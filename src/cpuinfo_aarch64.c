@@ -64,6 +64,17 @@ static void FillProcCpuInfoData(Aarch64Info* const info) {
   }
 }
 
+static bool IsSet(const uint32_t mask, const uint32_t value) {
+  if (mask == 0) return false;
+  return (value & mask) == mask;
+}
+
+static bool IsHwCapsSet(const HardwareCapabilities hwcaps_mask,
+                        const HardwareCapabilities hwcaps) {
+  return IsSet(hwcaps_mask.hwcaps, hwcaps.hwcaps) ||
+         IsSet(hwcaps_mask.hwcaps2, hwcaps.hwcaps2);
+}
+
 static const Aarch64Info kEmptyAarch64Info;
 
 Aarch64Info GetAarch64Info(void) {
