@@ -21,7 +21,6 @@
 #include "internal/hwcaps.h"
 #include "internal/stack_line_reader.h"
 #include "internal/string_view.h"
-#include "internal/unix_features_aggregator.h"
 
 #define DEFINE_TABLE_FEATURE_TYPE Aarch64Features
 #define DEFINE_TABLE_DB_FILENAME "cpuinfo_aarch64_db.inl"
@@ -64,17 +63,6 @@ static void FillProcCpuInfoData(Aarch64Info* const info) {
   }
 }
 
-static bool IsSet(const uint32_t mask, const uint32_t value) {
-  if (mask == 0) return false;
-  return (value & mask) == mask;
-}
-
-static bool IsHwCapsSet(const HardwareCapabilities hwcaps_mask,
-                        const HardwareCapabilities hwcaps) {
-  return IsSet(hwcaps_mask.hwcaps, hwcaps.hwcaps) ||
-         IsSet(hwcaps_mask.hwcaps2, hwcaps.hwcaps2);
-}
-
 static const Aarch64Info kEmptyAarch64Info;
 
 Aarch64Info GetAarch64Info(void) {
@@ -86,7 +74,7 @@ Aarch64Info GetAarch64Info(void) {
   FillProcCpuInfoData(&info);
   const HardwareCapabilities hwcaps = CpuFeatures_GetHardwareCapabilities();
   for (size_t i = 0; i < AARCH64_LAST_; ++i) {
-    if (IsHwCapsSet(kHardwareCapabilities[i], hwcaps)) {
+    if (CpuFeatures_IsHwCapsSet(kHardwareCapabilities[i], hwcaps)) {
       kSetters[i](&info.features, true);
     }
   }

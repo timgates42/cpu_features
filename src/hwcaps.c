@@ -146,6 +146,17 @@ HardwareCapabilities CpuFeatures_GetHardwareCapabilities(void) {
   return capabilities;
 }
 
+static bool IsSet(const uint32_t mask, const uint32_t value) {
+  if (mask == 0) return false;
+  return (value & mask) == mask;
+}
+
+bool CpuFeatures_IsHwCapsSet(const HardwareCapabilities hwcaps_mask,
+                             const HardwareCapabilities hwcaps) {
+  return IsSet(hwcaps_mask.hwcaps, hwcaps.hwcaps) ||
+         IsSet(hwcaps_mask.hwcaps2, hwcaps.hwcaps2);
+}
+
 PlatformType kEmptyPlatformType;
 
 PlatformType CpuFeatures_GetPlatformType(void) {
