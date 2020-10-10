@@ -12,7 +12,6 @@ add_library(filesystem_for_testing filesystem_for_testing.cc)
 target_compile_definitions(filesystem_for_testing PUBLIC CPU_FEATURES_MOCK_FILESYSTEM)
 ##------------------------------------------------------------------------------
 add_library(hwcaps_for_testing hwcaps_for_testing.cc)
-target_compile_definitions(hwcaps_for_testing PUBLIC CPU_FEATURES_MOCK_GET_ELF_HWCAP_FROM_GETAUXVAL)
 target_link_libraries(hwcaps_for_testing filesystem_for_testing)
 ##------------------------------------------------------------------------------
 add_library(stack_line_reader ../src/stack_line_reader.c)
