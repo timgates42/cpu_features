@@ -21,6 +21,10 @@
 #include "internal/string_view.h"
 #include "internal/unix_features_aggregator.h"
 
+#define DEFINE_TABLE_FEATURE_TYPE MipsFeatures
+#define DEFINE_TABLE_DB_FILENAME "cpuinfo_mips_db.inl"
+#include "define_tables.h"
+
 DECLARE_SETTER_AND_GETTER(MipsFeatures, msa)
 DECLARE_SETTER_AND_GETTER(MipsFeatures, eva)
 DECLARE_SETTER_AND_GETTER(MipsFeatures, r6)

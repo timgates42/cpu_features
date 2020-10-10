@@ -24,7 +24,7 @@
 #include "internal/string_view.h"
 
 #define DEFINE_TABLE_FEATURE_TYPE ArmFeatures
-#define DEFINE_TABLE_DB_FILENAME "cpuinfo_aarch64_db.inl"
+#define DEFINE_TABLE_DB_FILENAME "cpuinfo_arm_db.inl"
 #include "define_tables.h"
 
 typedef struct {
@@ -173,11 +173,11 @@ ArmInfo GetArmInfo(void) {
 
 int GetArmFeaturesEnumValue(const ArmFeatures* features,
                             ArmFeaturesEnum value) {
-  if (value >= kConfigsSize) return false;
-  return kConfigs[value].get_bit((ArmFeatures*)features);
+  if (value >= ARM_LAST_) return false;
+  return kGetters[value](features);
 }
 
 const char* GetArmFeaturesEnumName(ArmFeaturesEnum value) {
-  if (value >= kConfigsSize) return "unknown feature";
-  return kConfigs[value].proc_cpuinfo_flag;
+  if (value >= ARM_LAST_) return "unknown feature";
+  return kFeatureNames[value];
 }

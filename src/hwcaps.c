@@ -36,8 +36,14 @@
 // Implementation of GetElfHwcapFromGetauxval
 ////////////////////////////////////////////////////////////////////////////////
 
+#define AT_HWCAP 16
+#define AT_HWCAP2 26
+#define AT_PLATFORM 15
+#define AT_BASE_PLATFORM 24
+
 #if defined(CPU_FEATURES_MOCK_GET_ELF_HWCAP_FROM_GETAUXVAL)
 // Implementation will be provided by test/hwcaps_for_testing.cc.
+unsigned long GetElfHwcapFromGetauxval(uint32_t hwcap_type);
 #elif defined(HAVE_STRONG_GETAUXVAL)
 #include <sys/auxv.h>
 static unsigned long GetElfHwcapFromGetauxval(uint32_t hwcap_type) {
@@ -60,10 +66,6 @@ static unsigned long GetElfHwcapFromGetauxval(uint32_t hwcap_type) {
 // initialization layer.
 
 #include <dlfcn.h>
-#define AT_HWCAP 16
-#define AT_HWCAP2 26
-#define AT_PLATFORM 15
-#define AT_BASE_PLATFORM 24
 
 typedef unsigned long getauxval_func_t(unsigned long);
 
