@@ -83,5 +83,5 @@ int GetMipsFeaturesEnumValue(const MipsFeatures* features,
 
 const char* GetMipsFeaturesEnumName(MipsFeaturesEnum value) {
   if (value >= MIPS_LAST_) return "unknown feature";
-  return kFeatureNames[value];
+  return kCpuInfoFlags[value];
 }

@@ -179,5 +179,5 @@ int GetArmFeaturesEnumValue(const ArmFeatures* features,
 
 const char* GetArmFeaturesEnumName(ArmFeaturesEnum value) {
   if (value >= ARM_LAST_) return "unknown feature";
-  return kFeatureNames[value];
+  return kCpuInfoFlags[value];
 }

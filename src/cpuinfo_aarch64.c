@@ -93,5 +93,5 @@ int GetAarch64FeaturesEnumValue(const Aarch64Features* features,
 
 const char* GetAarch64FeaturesEnumName(Aarch64FeaturesEnum value) {
   if (value >= AARCH64_LAST_) return "unknown feature";
-  return kFeatureNames[value];
+  return kCpuInfoFlags[value];
 }

@@ -1,9 +1,3 @@
-#define FEATURE(ENUM, NAME, CPUINFO_FLAG, HWCAP, HWCAP2) [ENUM] = #NAME,
-static const char* kFeatureNames[] = {
-#include DEFINE_TABLE_DB_FILENAME
-};
-#undef FEATURE
-
 #define FEATURE(ENUM, NAME, CPUINFO_FLAG, HWCAP, HWCAP2) [ENUM] = CPUINFO_FLAG,
 static const char* kCpuInfoFlags[] = {
 #include DEFINE_TABLE_DB_FILENAME

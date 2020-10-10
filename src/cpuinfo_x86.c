@@ -1497,7 +1497,7 @@ int GetX86FeaturesEnumValue(const X86Features* features,
 
 const char* GetX86FeaturesEnumName(X86FeaturesEnum value) {
   if (value >= X86_LAST_) return "unknown_feature";
-  return kFeatureNames[value];
+  return kCpuInfoFlags[value];
 }
 
 const char* GetX86MicroarchitectureName(X86Microarchitecture uarch) {

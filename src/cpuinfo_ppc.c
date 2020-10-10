@@ -101,5 +101,5 @@ int GetPPCFeaturesEnumValue(const PPCFeatures* features,
 
 const char* GetPPCFeaturesEnumName(PPCFeaturesEnum value) {
   if (value >= PPC_LAST_) return "unknown feature";
-  return kFeatureNames[value];
+  return kCpuInfoFlags[value];
 }
